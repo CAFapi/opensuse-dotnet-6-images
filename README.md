@@ -1,0 +1,1 @@
+# opensuse-dotnet-6-images
