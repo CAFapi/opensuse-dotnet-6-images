@@ -25,7 +25,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>openSUSE Java11 images</name>
+    <name>openSUSE Dotnet 6 images</name>
     <description>Three openSUSE-based images which include the .NET6 Runtime Environment, .NET6 ASPRuntime Environment or .NET6 SDK.</description>
     <url>https://github.com/CAFapi/opensuse-dotnet-6-images</url>
 
