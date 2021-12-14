@@ -146,9 +146,9 @@
                 <artifactId>license-maven-plugin</artifactId>
                 <configuration>
                     <mapping>
-                        <patch>SCRIPT_STYLE</patch>
-                        <jre>SCRIPT_STYLE</jre>
-                        <jdk>SCRIPT_STYLE</jdk>
+                        <aspnetcore-runtime>SCRIPT_STYLE</aspnetcore-runtime>
+                        <dotnet-runtime>SCRIPT_STYLE</dotnet-runtime>
+                        <sdk>SCRIPT_STYLE</sdk>
                     </mapping>
                 </configuration>
             </plugin>
