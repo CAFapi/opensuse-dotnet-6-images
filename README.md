@@ -1,10 +1,11 @@
-# opensuse-dotnet-6-images
+# openSUSE .NET 6 Images
 
-This project builds three openSUSE-based images which include the .NET6 Runtime Environment, the .ASPNETCORE6 
-Runtime Environment or the .NET6 Software Development Kit and are based off the 
-[OpenSUSE java 8 images](https://github.com/CAFapi/opensuse-java8-images). 
+This project builds three openSUSE-based images which include:
+ - the .NET 6 Runtime Environment
+ - the .NET 6 Software Development Kit
+ - the ASP.NET Core 6 Runtime Environment
 
-These can be used as a base image by projects which require the associated .NET6 environment.
+They are all based on the [OpenSUSE Base Image](https://github.com/CAFapi/opensuse-base-image).  They are intended for use as base images by projects which require .NET 6.
 
 ### Tini
 [Tini](https://github.com/krallin/tini) is pre-installed in the container.  If the image entrypoint is not overwritten then it will be automatically used.
