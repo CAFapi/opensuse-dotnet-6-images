@@ -1,6 +1,6 @@
 <!--
 
-    Copyright 2021-2021 Micro Focus or one of its affiliates.
+    Copyright 2021 Micro Focus or one of its affiliates.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -20,22 +20,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.cafapi</groupId>
-    <artifactId>opensuse-dotnet-6-images</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-
-    <name>openSUSE Java11 images</name>
-    <description>Three openSUSE-based images which include the .NET6 Runtime Environment, .NET6 ASPRuntime Environment or .NET6 SDK.</description>
-    <url>https://github.com/CAFapi/opensuse-dotnet-6-images</url>
-
-    <inceptionYear>2021</inceptionYear>
-
     <parent>
         <groupId>com.github.cafapi</groupId>
         <artifactId>caf-common-parent</artifactId>
         <version>2.3.0-212</version>
     </parent>
+
+    <groupId>com.github.cafapi</groupId>
+    <artifactId>opensuse-dotnet6-images</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>openSUSE .NET 6 images</name>
+    <description>OpenSUSE-based images for .NET 6</description>
+    <url>https://github.com/CAFapi/opensuse-dotnet6-images</url>
+
+    <inceptionYear>2021</inceptionYear>
 
     <licenses>
         <license>
@@ -56,14 +56,21 @@
             <email>michael.bryson@microfocus.com</email>
         </developer>
         <developer>
-            <id>david-milligan</id>
+            <id>DavidGerald-Milligan</id>
             <name>David Milligan</name>
             <email>davidgerald.milligan@microfocus.com</email>
         </developer>
     </developers>
 
+    <scm>
+        <connection>scm:git:https://github.com/CAFapi/opensuse-dotnet6-images.git</connection>
+        <developerConnection>scm:git:https://github.com/CAFapi/opensuse-dotnet6-images.git</developerConnection>
+        <url>https://github.com/CAFapi/opensuse-dotnet6-images</url>
+    </scm>
+
     <properties>
         <copyrightYear>2021</copyrightYear>
+        <copyrightNotice>Copyright ${copyrightYear} Micro Focus or one of its affiliates.</copyrightNotice>
         <maven.install.skip>true</maven.install.skip>
         <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
         <dockerHubOrganization>cafapi</dockerHubOrganization>
@@ -77,7 +84,7 @@
             <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.34.0</version>
+                <version>0.38.1</version>
                 <executions>
                     <execution>
                         <id>docker-build</id>
@@ -95,13 +102,12 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <autoPull>always</autoPull>
                     <images>
                         <image>
-                            <name>${dockerCafImagePrefix}opensuse-aspnetcore6-runtime${dockerProjectVersion}</name>
+                            <name>${dockerCafImagePrefix}opensuse-dotnet6-aspnet${dockerProjectVersion}</name>
                             <build>
                                 <contextDir>.</contextDir>
-                                <dockerFile>Dockerfile.aspnetcore-runtime</dockerFile>
+                                <dockerFile>Dockerfile.aspnet</dockerFile>
                                 <args>
                                     <!-- Enable internet access -->
                                     <http_proxy>${env.HTTP_PROXY}</http_proxy>
@@ -114,7 +120,7 @@
                             <name>${dockerCafImagePrefix}opensuse-dotnet6-runtime${dockerProjectVersion}</name>
                             <build>
                                 <contextDir>.</contextDir>
-                                <dockerFile>Dockerfile.dotnet-runtime</dockerFile>
+                                <dockerFile>Dockerfile.runtime</dockerFile>
                                 <args>
                                     <!-- Enable internet access -->
                                     <http_proxy>${env.HTTP_PROXY}</http_proxy>
@@ -137,7 +143,7 @@
                             </build>
                         </image>
                     </images>
-                    <verbose>true</verbose>
+                    <verbose>api,build</verbose>
                 </configuration>
             </plugin>
             <plugin>
@@ -145,18 +151,13 @@
                 <artifactId>license-maven-plugin</artifactId>
                 <configuration>
                     <mapping>
-                        <patch>SCRIPT_STYLE</patch>
-                        <jre>SCRIPT_STYLE</jre>
-                        <jdk>SCRIPT_STYLE</jdk>
+                        <aspnet>SCRIPT_STYLE</aspnet>
+                        <runtime>SCRIPT_STYLE</runtime>
+                        <sdk>SCRIPT_STYLE</sdk>
                     </mapping>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
-    <scm>
-        <connection>scm:git:https://github.com/CAFapi/opensuse-dotnet-6-images.git</connection>
-        <developerConnection>scm:git:https://github.com/CAFapi/opensuse-dotnet-6-images.git</developerConnection>
-        <url>https://github.com/CAFapi/opensuse-dotnet-6-images</url>
-    </scm>
 </project>

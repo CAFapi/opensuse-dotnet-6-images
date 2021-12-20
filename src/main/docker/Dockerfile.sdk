@@ -17,13 +17,12 @@
 # Docker registry
 ARG DOCKER_HUB_PUBLIC=docker.io
 
-FROM ${DOCKER_HUB_PUBLIC}/cafapi/opensuse-jre8:3
+FROM ${DOCKER_HUB_PUBLIC}/cafapi/opensuse-base:2
 
-RUN zypper -n install libicu wget
-RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc
-RUN wget https://packages.microsoft.com/config/opensuse/15/prod.repo
-RUN mv prod.repo /etc/zypp/repos.d/microsoft-prod.repo
-RUN chown root:root /etc/zypp/repos.d/microsoft-prod.repo
-RUN zypper -n install dotnet-sdk-6.0
-RUN dotnet tool install --tool-path=/dotnet/tools/ dotnet-sonarscanner
-ENV PATH="/dotnet/tools:$PATH"
+RUN zypper -n refresh && \
+    zypper -n update && \
+    rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
+    curl -Lfo /etc/zypp/repos.d/microsoft-prod.repo https://packages.microsoft.com/config/opensuse/15/prod.repo && \
+    chown root:root /etc/zypp/repos.d/microsoft-prod.repo && \
+    zypper -n install dotnet-sdk-6.0 && \
+    zypper -n clean --all
